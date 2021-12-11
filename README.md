@@ -4,7 +4,7 @@
 <h4 align="center">
     <p>
         <b>中文说明</b> |
-        <a href="https://github.com/algolet/question_generation/blob/main/README.md">English</a>
+        <a href="https://github.com/algolet/question_generation/blob/main/README_en.md">English</a>
     <p>
 </h4>
 
