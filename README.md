@@ -9,7 +9,7 @@
 <h4 align="center">
     <p>
         <b>English</b> |
-        <a href="https://github.com/huggingface/transformers/blob/master/README_zh-hans.md">简体中文</a>
+        <a href="https://github.com/algolet/question_generation/blob/main/README_zh-hans.md">简体中文</a>
     <p>
 </h4>
 
