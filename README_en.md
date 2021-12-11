@@ -1,6 +1,6 @@
 
 <h3 align="center">
-    <p>Chinese Question Generation and Question Answering Pipeline</p>
+    <p>Chinese Question Generation Using MT5 Model</p>
 </h3>
 <h4 align="center">
     <p>
@@ -8,6 +8,7 @@
         <b>English</b>
     <p>
 </h4>
+Question Generation model by finetuning mt5 model.
 
 ## Online demos
 You can test the model directly on https://www.algolet.com/applications/qg
@@ -42,6 +43,8 @@ To use model of your own or any of the fine-tuned model on question-generation. 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("algolet/mt5-base-chinese-qg")
 >>> pipe = pipeline("question-generation", model=model, tokenizer=tokenizer)
 ``` 
+
+
 
 
  

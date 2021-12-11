@@ -22,7 +22,6 @@ class QuestionAnsweringPipeline:
                  model,
                  max_seq_length: int = 384,
                  doc_stride: int = 32,
-                 pad_to_max_length: bool = False,
                  version_2_with_negative: bool = True,
                  n_best_size: int = 1,
                  max_answer_length: int = 30,
@@ -31,7 +30,6 @@ class QuestionAnsweringPipeline:
         self.model = model
         self.max_seq_length = max_seq_length
         self.doc_stride = doc_stride
-        self.pad_to_max_length = pad_to_max_length
         self.question_column_name = "question"
         self.context_column_name = "context"
         self.version_2_with_negative = version_2_with_negative
@@ -60,7 +58,7 @@ class QuestionAnsweringPipeline:
             stride=self.doc_stride,
             return_overflowing_tokens=True,
             return_offsets_mapping=True,
-            padding="max_length" if self.pad_to_max_length else False
+            padding=True
         )
 
         # Since one example might give us several features if it has a long context, we need a map from a feature to
@@ -154,7 +152,7 @@ class QuestionAnsweringPipeline:
                 if item["prediction"]["start"] == item["prediction"]["end"]:
                     res.append(dict())
                 else:
-                    res.append({"text": item["prediction"]["text"],
+                    res.append({"answer": item["prediction"]["text"],
                                 "start": item["prediction"]["start"],
                                 "end": item["prediction"]["end"],
                                 "score": item["prediction"]["probability"]})
