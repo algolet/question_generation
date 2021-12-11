@@ -76,6 +76,20 @@
 ```   
 qa的返回中，`answer`为答案，`start`和`end`分别为答案在原文中的开始位置和结束位置
 
+## 安装说明
+```bash
+pip install question_generation
+```
+
+## 模型训练
+你可以训练自己的问题生成模型和问答模型
+
+
+
+
+
+
+
 
 
 
