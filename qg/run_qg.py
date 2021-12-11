@@ -23,7 +23,6 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import datasets
-import numpy as np
 from datasets import load_dataset
 
 import transformers
