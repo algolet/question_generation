@@ -83,6 +83,91 @@ Here is how to quickly use a pipeline to answer questions.
  {'answer': '放在怀里', 'start': 40, 'end': 44, 'score': 0.9995}]    
 ```   
 
+## Installation
+```bash
+pip install question_generation
+```
+            
+## Model Training
+#### How to train a qg model
+##### Sample data 
+``` python 
+>>> train.json
+{"data": [{"source_text": "对于某些物理情况，不可能将力的形成归因于势的梯度。这通常是由于宏观物理的考虑，屈服力产生于微观状态的宏观统计平均值。例如，摩擦是由原子间大量静电势的梯度引起的，但表现为独立于任何宏观位置矢量的力模型。非保守力除摩擦力外，还包括其他接触力、拉力、压缩力和阻力。然而，对于任何足够详细的描述，所有这些力都是保守力的结果，因为每一个宏观力都是微观势梯度的净结果。",
+           "target_text": "拉力、压缩和拉力是什么力?{sep_token}静电梯度电势会产生什么?{sep_token}为什么这些力是无法建模的呢?"}
+          {"source_text": "绿宝石失窃案 （法语： Les Bijoux de la Castafiore ；英语： The Castafiore Emerald ）是丁丁历险记的第21部作品。作者是比利时漫画家埃尔热。本作与之前的丁丁历险记有著很大的不同，丁丁首次进行没有离开自己家的冒险，同时故事中没有明显的反派角色，充满了喜剧色彩。丁丁和船长原本在城堡悠闲度假，却因歌后突然造访而弄得鸡飞狗跳；媒体对歌后的行踪极度关注，穷追猛打；歌后一颗珍贵的绿宝石又突然失踪，引起了一波接一波的疑团，究竟谁的嫌疑最大？是船长刚刚收留的一伙吉卜赛人？是偷偷混入记者群中的神秘男子？是歌后的贴身女仆？还是行迹鬼祟的钢琴师？"，
+           "target_text": "故事中引起众多谜团的原因是？{sep_token}此部作品与以往不同的地方在于哪里？{sep_token}丁丁和船长的悠闲假期因何被打乱？{sep_token}《绿宝石失窃案》是《丁丁历险记》系列的第几部？{sep_token}《绿宝石失窃案》的作者是谁？"}
+          ...
+          ]}
+``` 
+##### Example config
+``` python 
+>>> qg_config.json  
+{
+  "model_name_or_path": "google/mt5-small",
+  "tokenizer_name": "google/mt5-small",
+  "text_column": "source_text",
+  "summary_column": "target_text",
+  "train_file": "data/train.json",
+  "validation_file": "data/dev.json",
+  "output_dir": "data/qg",
+  "model_type": "mt5",
+  "overwrite_output_dir": true,
+  "do_train": true,
+  "do_eval": true,
+  "source_prefix": "question generation: ",
+  "predict_with_generate": true,
+  "per_device_train_batch_size": 8,
+  "per_device_eval_batch_size": 8,
+  "gradient_accumulation_steps": 32,
+  "learning_rate": 1e-3,
+  "num_train_epochs": 4,
+  "max_source_length": 512,
+  "max_target_length": 200,
+  "logging_steps": 100,
+  "seed": 42
+}
+```   
+##### Example command
+```
+CUDA_VISIBLE_DEVICES=0 python run_qg.py qg_config.json 
+```
+
+
+#### How to train a qa model
+##### Sample data
+``` python 
+>>> train.json
+{'version': 2.0,
+ 'data': [{'id': 'c398789b7375e0ce7eac86f2b18c3808',
+           'question': '隐藏式行车记录仪哪个牌子好',
+           'context': '推荐使用360行车记录仪。行车记录仪的好坏，取决于行车记录仪的摄像头配置，配置越高越好，再就是性价比。 行车记录仪配置需要1296p超高清摄像头比较好，这样录制视频清晰度高。再就是价格，性价比高也是可以值得考虑的。 360行车记录仪我使用了一段时间 ，觉得360行车记录仪比较好录得广角比较大，并且便宜实惠 ，价格才299，在360商城可以买到。可以参考对比下。',
+           'answers': {'answer_start': [4], 'text': ['360行车记录仪']}}]}
+``` 
+##### Example config
+``` python 
+>>> qa_config.json  
+{
+  "model_name_or_path": "bert-base-chinese",
+  "tokenizer_name": "bert-base-chinese",
+  "train_file": "data/train.json",
+  "validation_file": "data/dev.json",
+  "output_dir": "data/qa",
+  "per_device_train_batch_size": 8,
+  "per_device_eval_batch_size": 8,
+  "gradient_accumulation_steps": 32,
+  "overwrite_output_dir": true,
+  "do_train": true,
+  "do_eval": true,
+  "max_answer_length": 200
+}
+```   
+##### Example command
+```
+CUDA_VISIBLE_DEVICES=0 python run_qa.py qa_config.json 
+```
+
+
 
 
 
