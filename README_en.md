@@ -49,7 +49,7 @@ so that you will have an automatic question generating ans answering application
 
 Here is how to quickly use a pipeline to answer questions. 
 ``` python 
->>> from question_generation import pipeline 
+>>> from question_generation import pipeline
 
 # Allocate a pipeline for question-generation
 >>> qa = pipeline("question-answering") 

@@ -3,15 +3,6 @@ from typing import Union, List, Dict
 from torch import Tensor
 import torch
 
-if torch.cuda.is_available():
-    # Tell PyTorch to use the GPU.
-    device = torch.device("cuda")
-    print('There are %d GPU(s) available.' % torch.cuda.device_count())
-    print('We will use the GPU:', torch.cuda.get_device_name(0))
-else:
-    print('No GPU available, using the CPU instead.')
-    device = torch.device("cpu")
-
 logger = logging.getLogger(__name__)
 
 
@@ -23,6 +14,14 @@ class QuestionGenerationPipeline:
                  max_target_length: int = 200):
         self.tokenizer = tokenizer
         self.model = model
+        if torch.cuda.is_available():
+            # Tell PyTorch to use the GPU.
+            device = torch.device("cuda")
+            print('There are %d GPU(s) available.' % torch.cuda.device_count())
+            print('We will use the GPU:', torch.cuda.get_device_name(0))
+        else:
+            print('No GPU available, using the CPU instead.')
+            device = torch.device("cpu")
         self.device = device
         self.model = self.model.to(self.device)
         self.model.eval()

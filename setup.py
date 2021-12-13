@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="question_generation",
-    version="0.0.1",
+    version="0.0.2",
     author="algolet",
     author_email="wei.cai@algolet.com",
     description="Question Generation and Question Answering Pipeline",
@@ -10,9 +10,9 @@ setup(
     long_description_content_type="text/markdown",
     license="Apache",
     url="https://github.com/algolet/question_generation",
-    package_dir={"": "qg"},
-    packages=find_packages("qg"),
-    python_requires=">=3.6.0",
+    package_dir={"": "question_generation"},
+    packages=find_packages("question_generation"),
+    python_requires=">=3.6.0"
 )
   
 

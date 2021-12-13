@@ -6,15 +6,6 @@ from typing import Union, List, Dict
 
 logger = logging.getLogger(__name__)
 
-if torch.cuda.is_available():
-    # Tell PyTorch to use the GPU.
-    device = torch.device("cuda")
-    print('There are %d GPU(s) available.' % torch.cuda.device_count())
-    print('We will use the GPU:', torch.cuda.get_device_name(0))
-else:
-    print('No GPU available, using the CPU instead.')
-    device = torch.device("cpu")
-
 
 class QuestionAnsweringPipeline:
     def __init__(self,
@@ -36,6 +27,14 @@ class QuestionAnsweringPipeline:
         self.n_best_size = n_best_size
         self.max_answer_length = max_answer_length
         self.null_score_diff_threshold = null_score_diff_threshold
+        if torch.cuda.is_available():
+            # Tell PyTorch to use the GPU.
+            device = torch.device("cuda")
+            print('There are %d GPU(s) available.' % torch.cuda.device_count())
+            print('We will use the GPU:', torch.cuda.get_device_name(0))
+        else:
+            print('No GPU available, using the CPU instead.')
+            device = torch.device("cpu")
         self.device = device
         self.model = self.model.to(self.device)
         self.model.eval()
