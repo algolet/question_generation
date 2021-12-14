@@ -165,7 +165,8 @@ CUDA_VISIBLE_DEVICES=0 python run_qg.py qg_config.json
 ##### Example command
 ```
 CUDA_VISIBLE_DEVICES=0 python run_qa.py qa_config.json 
-```
+``` 
+
 
 
 
