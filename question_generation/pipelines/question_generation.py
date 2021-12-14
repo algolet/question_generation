@@ -11,19 +11,15 @@ class QuestionGenerationPipeline:
                  tokenizer,
                  model,
                  max_source_length: int = 512,
-                 max_target_length: int = 200):
+                 max_target_length: int = 200,
+                 device: int = -1):
         self.tokenizer = tokenizer
         self.model = model
-        if torch.cuda.is_available():
-            # Tell PyTorch to use the GPU.
-            device = torch.device("cuda")
-            print('There are %d GPU(s) available.' % torch.cuda.device_count())
-            print('We will use the GPU:', torch.cuda.get_device_name(0))
+        if device < 0:
+            self.device = "cpu"
         else:
-            print('No GPU available, using the CPU instead.')
-            device = torch.device("cpu")
-        self.device = device
-        self.model = self.model.to(self.device)
+            self.device = torch.device("cuda")
+            self.model = self.model.to(self.device)
         self.model.eval()
         self.max_source_length = max_source_length
         self.max_target_length = max_target_length
@@ -38,7 +34,7 @@ class QuestionGenerationPipeline:
                                 max_length=self.max_source_length)
         return inputs
 
-    def post_processing_function(self, outs, ):
+    def post_processing_function(self, outs):
         questions = self.tokenizer.batch_decode(outs, skip_special_tokens=True)
         separated_questions = []
         for each_batch_questions in questions:

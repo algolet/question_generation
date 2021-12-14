@@ -16,7 +16,8 @@ class QuestionAnsweringPipeline:
                  version_2_with_negative: bool = True,
                  n_best_size: int = 1,
                  max_answer_length: int = 30,
-                 null_score_diff_threshold: int = 0):
+                 null_score_diff_threshold: int = 0,
+                 device: int = -1):
         self.tokenizer = tokenizer
         self.model = model
         self.max_seq_length = max_seq_length
@@ -27,16 +28,11 @@ class QuestionAnsweringPipeline:
         self.n_best_size = n_best_size
         self.max_answer_length = max_answer_length
         self.null_score_diff_threshold = null_score_diff_threshold
-        if torch.cuda.is_available():
-            # Tell PyTorch to use the GPU.
-            device = torch.device("cuda")
-            print('There are %d GPU(s) available.' % torch.cuda.device_count())
-            print('We will use the GPU:', torch.cuda.get_device_name(0))
+        if device < 0:
+            self.device = "cpu"
         else:
-            print('No GPU available, using the CPU instead.')
-            device = torch.device("cpu")
-        self.device = device
-        self.model = self.model.to(self.device)
+            self.device = torch.device("cuda")
+            self.model = self.model.to(self.device)
         self.model.eval()
         # Validation preprocessing
 
