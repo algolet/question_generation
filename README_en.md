@@ -22,7 +22,10 @@ Here is how to quickly use a pipeline to generate questions
 >>> from question_generation import pipeline
 
 # Allocate a pipeline for question-generation
+# for cpu
 >>> qg = pipeline("question-generation") 
+# device is larger than -1 when using gpu
+>>> qg = pipeline("question-generation", device=0) 
 # for single text         
 >>> qg("在一个寒冷的冬天，赶集完回家的农夫在路边发现了一条冻僵了的蛇。他很可怜蛇，就把它放在怀里。
        "当他身上的热气把蛇温暖以后，蛇很快苏醒了，露出了残忍的本性，给了农夫致命的伤害——咬了农夫一口。
@@ -52,7 +55,10 @@ Here is how to quickly use a pipeline to answer questions.
 >>> from question_generation import pipeline
 
 # Allocate a pipeline for question-generation
->>> qa = pipeline("question-answering") 
+# for cpu
+>>> qa = pipeline("question-answering")
+# device is larger than -1 when using gpu
+>>> qa = pipeline("question-answering", device=0)
 >>> text = ""在一个寒冷的冬天，赶集完回家的农夫在路边发现了一条冻僵了的蛇。他很可怜蛇，就把它放在怀里。当他身上的热气把蛇温暖以后，蛇很快苏醒了，露出了残忍的本性，给了农夫致命的伤害——咬了农夫一口。农夫临死之前说：“我竟然救了一条可怜的毒蛇，就应该受到这种报应啊！”""
 # for single qa input
 >>> question_answerer({

@@ -28,6 +28,7 @@ def pipeline(
         task: str,
         model: Optional = None,
         tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
+        device: int = -1
 ):
     if task is None and model is None:
         raise RuntimeError(
@@ -73,4 +74,4 @@ def pipeline(
 
     if isinstance(model, str):
         model = model_classes.from_pretrained(model)
-    return pipeline_class(model=model, tokenizer=tokenizer)
+    return pipeline_class(model=model, tokenizer=tokenizer, device=device)
