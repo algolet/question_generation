@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 requirements = [
     "transformers>=4.12.5",
     "datasets>=1.15.1",
-    "torch>=1.0"
+    "torch>=1.3"
 ]
 
 setup(
     name="question_generation",
-    version="1.0.4",
+    version="1.0.5",
     author="algolet",
     author_email="wei.cai@algolet.com",
     description="Question Generation and Question Answering Pipeline",

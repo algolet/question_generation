@@ -88,6 +88,21 @@ Here is how to quickly use a pipeline to answer questions.
 ```   
 
 ## Installation
+This repository needs pytorch>=1.3, transormfers>=4.12.5 and datasets>=1.15.1
+cuda torch
+```bash
+pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+```  
+cpu torch
+```bash
+pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+``` 
+transformers and datasets
+```bash
+pip install transormfers
+pip install datasets 
+```        
+this repository
 ```bash
 pip install question_generation
 ```

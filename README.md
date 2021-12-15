@@ -80,6 +80,22 @@
 qa的返回中，`answer`为答案，`start`和`end`分别为答案在原文中的开始位置和结束位置
 
 ## 安装说明
+需要安装pytorch>=1.3, transormfers>=4.12.5 和 datasets>=1.15.1, pip安装速度如果较慢，可使用阿里源，在安装命令后添加 -i https://mirrors.aliyun.com/pypi/simple/
+
+cuda版pytorch安装
+```bash
+pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+```  
+cup版pytorh安装
+```bash
+pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+``` 
+安装transformers和datasets
+```bash
+pip install transormfers
+pip install datasets 
+```        
+安装本项目
 ```bash
 pip install question_generation
 ```
