@@ -17,7 +17,7 @@ class QuestionAnsweringPipeline:
                  n_best_size: int = 1,
                  max_answer_length: int = 30,
                  null_score_diff_threshold: int = 0,
-                 device: int = -1):
+                 device: str = "cpu"):
         self.tokenizer = tokenizer
         self.model = model
         self.max_seq_length = max_seq_length
@@ -28,11 +28,15 @@ class QuestionAnsweringPipeline:
         self.n_best_size = n_best_size
         self.max_answer_length = max_answer_length
         self.null_score_diff_threshold = null_score_diff_threshold
-        if device < 0:
+        if device == "cpu":
             self.device = "cpu"
-        else:
+        elif device == "cuda":
             self.device = torch.device("cuda")
             self.model = self.model.to(self.device)
+        else:
+            raise Exception(
+                "device should be cup or cuda"
+            )
         self.model.eval()
         # Validation preprocessing
 

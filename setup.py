@@ -8,7 +8,7 @@ requirements = [
 
 setup(
     name="question_generation",
-    version="0.0.3",
+    version="1.0.4",
     author="algolet",
     author_email="wei.cai@algolet.com",
     description="Question Generation and Question Answering Pipeline",

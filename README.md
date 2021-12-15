@@ -20,10 +20,10 @@
 >>> from question_generation import pipeline
 
 # Allocate a pipeline for question-generation
-# cpu版本
->>> qg = pipeline("question-generation") 
-# gpu版本, 可设置device>=0
->>> qg = pipeline("question-generation", device=0) 
+# cpu版本, 如果不传入device参数，默认是cpu版本，
+>>> qg = pipeline("question-generation", device="cpu") 
+# gpu版本
+>>> qg = pipeline("question-generation", device="cuda") 
 # for single text         
 >>> qg("在一个寒冷的冬天，赶集完回家的农夫在路边发现了一条冻僵了的蛇。他很可怜蛇，就把它放在怀里。当他身上的热气把蛇温暖以后，蛇很快苏醒了，露出了残忍的本性，给了农夫致命的伤害——咬了农夫一口。农夫临死之前说：“我竟然救了一条可怜的毒蛇，就应该受到这种报应啊！”")
 ['在寒冷的冬天,农夫在哪里发现了一条可怜的蛇?', '农夫是如何看待蛇的?', '当农夫遇到蛇时,他做了什么?']  

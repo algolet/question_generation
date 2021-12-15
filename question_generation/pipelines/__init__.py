@@ -28,7 +28,7 @@ def pipeline(
         task: str,
         model: Optional = None,
         tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
-        device: int = -1
+        device: str = "cpu"
 ):
     if task is None and model is None:
         raise RuntimeError(

@@ -12,14 +12,18 @@ class QuestionGenerationPipeline:
                  model,
                  max_source_length: int = 512,
                  max_target_length: int = 200,
-                 device: int = -1):
+                 device: str = "cpu"):
         self.tokenizer = tokenizer
         self.model = model
-        if device < 0:
+        if device == "cpu":
             self.device = "cpu"
-        else:
+        elif device == "cuda":
             self.device = torch.device("cuda")
             self.model = self.model.to(self.device)
+        else:
+            raise Exception(
+                "device should be cpu or cuda"
+            )
         self.model.eval()
         self.max_source_length = max_source_length
         self.max_target_length = max_target_length
