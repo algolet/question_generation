@@ -92,7 +92,7 @@ pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f
 ``` 
 安装transformers和datasets
 ```bash
-pip install transormfers
+pip install transformers
 pip install datasets 
 ```        
 安装本项目
