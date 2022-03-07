@@ -10,7 +10,7 @@
 基于预训练模型mt5精调的问题生成模型
 
 ## 在线测试
-可以直接在线使用我们的模型 https://www.algolet.com/applications/qg
+可以直接在线使用我们的模型 https://www.algolet.com/applications/qg?accessSource=github
 
 ## 使用说明
 我们提供了`question_generation` 和 `question_answering`的`pipeline` API，通过调用对应的pipeline,可以轻松实现相应任务

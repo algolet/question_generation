@@ -11,7 +11,7 @@
 Question Generation model by finetuning mt5 model.
 
 ## Online demos
-You can test the model directly on https://www.algolet.com/applications/qg
+You can test the model directly on https://www.algolet.com/applications/qg?accessSource=github
 
 ## Ouick tour
 To immediately use models on given inputs, we provide `question_generation` and `question_answering` `pipeline` API
